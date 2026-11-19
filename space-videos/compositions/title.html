@@ -1,0 +1,73 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #title-block {
+      position: absolute;
+      left: 200px;
+      top: 330px;
+      width: 820px;
+    }
+    #title-kicker {
+      font-family: "Space Mono", monospace;
+      font-size: 28px;
+      letter-spacing: 0.32em;
+      color: #8fb4ff;
+      text-transform: uppercase;
+    }
+    #title-main {
+      margin-top: 18px;
+      font-family: "Outfit", sans-serif;
+      font-weight: 800;
+      font-size: 132px;
+      line-height: 0.95;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+    #title-main .ch {
+      display: inline-block;
+    }
+    #title-rule {
+      margin-top: 30px;
+      width: 220px;
+      height: 4px;
+      background: linear-gradient(90deg, #ffb46b, #ff6ba8);
+      transform-origin: left center;
+    }
+    #title-sub {
+      margin-top: 26px;
+      font-family: "Inter", sans-serif;
+      font-size: 34px;
+      color: #c9d4ee;
+    }
+  </style>
+  <div id="root" data-composition-id="title" data-width="1920" data-height="1080">
+    <div id="title-block">
+      <div id="title-kicker">Episode 00 · Test</div>
+      <div id="title-main">
+        <span class="ch">S</span><span class="ch">p</span><span class="ch">a</span><span class="ch">c</span><span class="ch">e</span><br />
+        <span class="ch">V</span><span class="ch">i</span><span class="ch">d</span><span class="ch">e</span><span class="ch">o</span><span class="ch">s</span>
+      </div>
+      <div id="title-rule"></div>
+      <div id="title-sub">Drawn entirely in code</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#title-kicker", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.4);
+    tl.fromTo(
+      "#title-main .ch",
+      { opacity: 0, y: 70, rotationX: -70 },
+      { opacity: 1, y: 0, rotationX: 0, duration: 0.9, ease: "power4.out", stagger: 0.05 },
+      0.6,
+    );
+    tl.fromTo("#title-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power3.inOut" }, 1.4);
+    tl.fromTo("#title-sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 1.7);
+    // Slow drift while held, then exit upward before the slot ends.
+    tl.fromTo("#title-block", { x: 0 }, { x: -18, duration: 9, ease: "none" }, 0);
+    tl.to("#title-block", { opacity: 0, y: -30, duration: 0.7, ease: "power2.in" }, 8.2);
+    window.__timelines["title"] = tl;
+  </script>
+</template>

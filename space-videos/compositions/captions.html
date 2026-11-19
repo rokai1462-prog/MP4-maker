@@ -1,0 +1,56 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    .cap-group {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 110px;
+      text-align: center;
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 60px;
+      color: #ffffff;
+      overflow: visible;
+      opacity: 0;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.85);
+    }
+    .cap-group .w {
+      display: inline-block;
+      margin: 0 0.12em;
+    }
+    .cap-group .hl {
+      color: #ffc37a;
+    }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1920" data-height="1080">
+    <div id="cap-1" class="cap-group" data-cap-start="0.3" data-cap-end="3.2">
+      <span class="w">Everything</span><span class="w">you</span><span class="w">see</span><span class="w">is</span><span class="w">drawn</span><span class="w">in</span><span class="w hl">code.</span>
+    </div>
+    <div id="cap-2" class="cap-group" data-cap-start="3.4" data-cap-end="6.6">
+      <span class="w">Hundreds</span><span class="w">of</span><span class="w">stars,</span><span class="w">placed</span><span class="w">by</span><span class="w hl">math.</span>
+    </div>
+    <div id="cap-3" class="cap-group" data-cap-start="6.8" data-cap-end="10.6">
+      <span class="w">A</span><span class="w hl">gas</span><span class="w hl">giant,</span><span class="w">turning</span><span class="w">slowly</span><span class="w">on</span><span class="w">its</span><span class="w">axis.</span>
+    </div>
+    <div id="cap-4" class="cap-group" data-cap-start="10.8" data-cap-end="14.7">
+      <span class="w">No</span><span class="w">cameras.</span><span class="w">No</span><span class="w">AI</span><span class="w">video.</span><span class="w hl">Just</span><span class="w hl">HTML.</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    document.querySelectorAll("#root .cap-group").forEach((g) => {
+      const start = parseFloat(g.dataset.capStart);
+      const end = parseFloat(g.dataset.capEnd);
+      const words = g.querySelectorAll(".w");
+      tl.set(g, { opacity: 1, visibility: "visible" }, start);
+      tl.fromTo(words, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out", stagger: 0.08 }, start);
+      tl.to(g, { opacity: 0, duration: 0.15, ease: "power2.in" }, end - 0.15);
+      tl.set(g, { opacity: 0, visibility: "hidden" }, end);
+    });
+    window.__timelines["captions"] = tl;
+  </script>
+</template>
