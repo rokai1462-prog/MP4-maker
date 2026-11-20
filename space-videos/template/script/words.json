@@ -1,0 +1,167 @@
+[
+ {
+  "text": "Your",
+  "start": 0.3,
+  "end": 0.6
+ },
+ {
+  "text": "hook",
+  "start": 0.65,
+  "end": 0.95
+ },
+ {
+  "text": "question",
+  "start": 1.0,
+  "end": 1.4
+ },
+ {
+  "text": "goes",
+  "start": 1.45,
+  "end": 1.75
+ },
+ {
+  "text": "*here?*",
+  "start": 1.8,
+  "end": 2.125
+ },
+ {
+  "text": "Scene",
+  "start": 2.3,
+  "end": 2.625
+ },
+ {
+  "text": "one",
+  "start": 2.675,
+  "end": 2.95
+ },
+ {
+  "text": "sets",
+  "start": 3.0,
+  "end": 3.3
+ },
+ {
+  "text": "up",
+  "start": 3.35,
+  "end": 3.6
+ },
+ {
+  "text": "the",
+  "start": 3.65,
+  "end": 3.925
+ },
+ {
+  "text": "mystery.",
+  "start": 3.975,
+  "end": 4.375
+ },
+ {
+  "text": "Each",
+  "start": 5.0,
+  "end": 5.3
+ },
+ {
+  "text": "part",
+  "start": 5.35,
+  "end": 5.65
+ },
+ {
+  "text": "appears",
+  "start": 5.7,
+  "end": 6.075
+ },
+ {
+  "text": "when",
+  "start": 6.125,
+  "end": 6.425
+ },
+ {
+  "text": "the",
+  "start": 6.475,
+  "end": 6.75
+ },
+ {
+  "text": "voice",
+  "start": 6.8,
+  "end": 7.125
+ },
+ {
+  "text": "names",
+  "start": 7.175,
+  "end": 7.5
+ },
+ {
+  "text": "it:",
+  "start": 7.55,
+  "end": 7.825
+ },
+ {
+  "text": "the",
+  "start": 7.9,
+  "end": 8.175
+ },
+ {
+  "text": "star,",
+  "start": 8.225,
+  "end": 8.55
+ },
+ {
+  "text": "the",
+  "start": 8.6,
+  "end": 8.875
+ },
+ {
+  "text": "arrow,",
+  "start": 8.925,
+  "end": 9.275
+ },
+ {
+  "text": "the",
+  "start": 9.325,
+  "end": 9.6
+ },
+ {
+  "text": "planet.",
+  "start": 9.65,
+  "end": 10.025
+ },
+ {
+  "text": "Then",
+  "start": 11.0,
+  "end": 11.3
+ },
+ {
+  "text": "land",
+  "start": 11.35,
+  "end": 11.65
+ },
+ {
+  "text": "the",
+  "start": 11.7,
+  "end": 11.975
+ },
+ {
+  "text": "one",
+  "start": 12.025,
+  "end": 12.3
+ },
+ {
+  "text": "idea,",
+  "start": 12.35,
+  "end": 12.675
+ },
+ {
+  "text": "in",
+  "start": 12.7,
+  "end": 12.95
+ },
+ {
+  "text": "*one*",
+  "start": 13.0,
+  "end": 13.275
+ },
+ {
+  "text": "*line.*",
+  "start": 13.325,
+  "end": 13.65
+ }
+]

@@ -1,0 +1,83 @@
+<template>
+  <!--
+    SCENE 02 — A MIDDLE SCENE (copy this file for scene-03, scene-04, ...).
+    Zooms in from deep space, holds with a slow drift, rushes out at the end.
+    Pattern: kicker + headline at top, one diagram that grows part by part in the middle,
+    captions underneath (from the captions track).
+  -->
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #s02-inner {
+      position: absolute;
+      inset: 0;
+    }
+    #s02-text {
+      top: 300px;
+    }
+    #s02-head {
+      margin-top: 22px;
+    }
+    #s02-stage {
+      position: absolute;
+      left: 90px;
+      top: 640px;
+      width: 900px;
+      height: 420px;
+    }
+    #s02-svg {
+      width: 900px;
+      height: 420px;
+    }
+    #s02-label-a,
+    #s02-label-b {
+      position: absolute;
+    }
+    #s02-label-a {
+      left: 90px;
+      top: 270px;
+    }
+    #s02-label-b {
+      right: 120px;
+      top: 270px;
+      text-align: right;
+    }
+  </style>
+  <div id="root" data-composition-id="scene-02" data-width="1080" data-height="1920">
+    <div id="s02-inner">
+      <div id="s02-text" class="sv-column">
+        <div id="s02-kicker" class="sv-kicker">01 · The idea</div>
+        <div id="s02-head" class="sv-headline">One diagram that <em>grows</em></div>
+      </div>
+      <div id="s02-stage" data-layout-ignore>
+        <svg id="s02-svg" viewBox="0 0 900 420">
+          <circle id="s02-star" cx="230" cy="170" r="70" fill="#ffc37a" />
+          <path id="s02-arrow" d="M 330 170 L 640 170" stroke="#ff8a5c" stroke-width="8" stroke-linecap="butt" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+          <polygon id="s02-head-tip" points="640,145 690,170 640,195" fill="#ff8a5c" />
+          <circle id="s02-planet" cx="740" cy="170" r="44" fill="#8fb4ff" />
+        </svg>
+        <div id="s02-label-a" class="sv-label">Part <em>A</em></div>
+        <div id="s02-label-b" class="sv-label">Part <em>B</em></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const DUR = SV.sceneDuration(document.getElementById("s02-inner"), 6.5);
+      const tl = gsap.timeline({ paused: true });
+      SV.zoomIn(tl, "#s02-inner");
+      SV.drift(tl, "#s02-stage", DUR);
+      // Reveal each part when the narration names it (retime these to the voice).
+      tl.fromTo("#s02-star", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.6, ease: "back.out(1.6)" }, 0.9);
+      SV.rise(tl, "#s02-label-a", 1.2);
+      tl.to("#s02-arrow", { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, 2.2);
+      tl.fromTo("#s02-head-tip", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 3.0);
+      tl.fromTo("#s02-planet", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.6, ease: "back.out(1.6)" }, 3.1);
+      SV.rise(tl, "#s02-label-b", 3.4);
+      SV.zoomOut(tl, "#s02-inner", DUR);
+      window.__timelines["scene-02"] = tl;
+    })();
+  </script>
+</template>

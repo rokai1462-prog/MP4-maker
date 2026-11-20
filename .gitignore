@@ -1,6 +1,6 @@
 node_modules/
-space-videos/.hyperframes/artifacts/
-space-videos/.hyperframes/cache/
-space-videos/.hyperframes/preview/
-space-videos/.hyperframes/*-lock
+**/.hyperframes/artifacts/
+**/.hyperframes/cache/
+**/.hyperframes/preview/
+**/.hyperframes/*-lock
 .DS_Store
