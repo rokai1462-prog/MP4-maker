@@ -64,7 +64,7 @@
       const DUR = SV.sceneDuration(document.getElementById("s01-inner"), 5);
       const tl = gsap.timeline({ paused: true });
       // Already on screen at frame 0; small accents animate in.
-      tl.fromTo("#s01-kicker", { letterSpacing: "0.24em" }, { letterSpacing: "0.3em", duration: DUR, ease: "none" }, 0);
+      tl.fromTo("#s01-text", { y: 0 }, { y: -12, duration: DUR, ease: "none" }, 0);
       SV.drift(tl, "#s01-stage", DUR);
       // Moon on its orbit: position is a pure function of time.
       const orbit = { p: 0.1 };

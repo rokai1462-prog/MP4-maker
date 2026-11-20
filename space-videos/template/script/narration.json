@@ -1,0 +1,9 @@
+{
+  "voice_id": "SAz9YHcvj6GT2YYXdXww",
+  "model_id": "eleven_multilingual_v2",
+  "scenes": [
+    { "id": "scene-01", "text": "Your hook question goes *here?*" },
+    { "id": "scene-02", "text": "Each part appears when the voice names it: the star, the arrow, the planet." },
+    { "id": "scene-03", "text": "Then land the one idea, in *one* *line.*" }
+  ]
+}

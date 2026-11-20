@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "c6d57bb3-1ff0-4a06-8101-0a3ed87de058",
-  "currentRevision": "c410bcef-0424-418d-84ca-7398e4f7abc2",
+  "currentRevision": "e6316d22-6c3f-4a4b-9c02-393050553af4",
   "pendingChanges": false,
   "files": {
     "assets/brand/brand.css": {
@@ -21,8 +21,8 @@
       "content": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/16/1609643208bcbd9eb009f5b18e9e962dd2df9451d187518ce8178c764ca1403f"
     },
     "compositions/scene-01.html": {
-      "hash": "08970b8de9bd598ebc3b45c85744b24f9ba4c48fff751187acfc734f41068f45",
-      "content": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/08/08970b8de9bd598ebc3b45c85744b24f9ba4c48fff751187acfc734f41068f45"
+      "hash": "eee0d3ef59d5b73f28c8685217e2f3a77c2b5f5d99c7310d1ae84083f3840c1a",
+      "content": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/ee/eee0d3ef59d5b73f28c8685217e2f3a77c2b5f5d99c7310d1ae84083f3840c1a"
     },
     "compositions/scene-02.html": {
       "hash": "b792d81b5f87b1fba33935c19a1f33ce5dfdef1c04a2e0d8301148c918cb9c2d",
@@ -41,8 +41,8 @@
       "content": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/23/235171110fa4425bb6d7ad65390abf8ee3dfec1c866eb6e7a66e7c42cdb0e93d"
     },
     "index.html": {
-      "hash": "fbecf0ad818cc1eda8033cb2d4fb0b8327543c8eba13f614e65d59100eb4b883",
-      "content": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/fb/fbecf0ad818cc1eda8033cb2d4fb0b8327543c8eba13f614e65d59100eb4b883"
+      "hash": "221582b830fab986d42199eb9ce5cce51e3cea6fb47b61430a55666aaf67c3ce",
+      "content": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/22/221582b830fab986d42199eb9ce5cce51e3cea6fb47b61430a55666aaf67c3ce"
     },
     "meta.json": {
       "hash": "cbfaeed4a7677cda0d1847e04839b7340f899083e50647c8049b225310b64588",
@@ -51,6 +51,14 @@
     "script/words.json": {
       "hash": "16b3f8cdc716a389f10ee3f10f54605dd2004e25fe2154832fc32043250cc6a3",
       "content": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/16/16b3f8cdc716a389f10ee3f10f54605dd2004e25fe2154832fc32043250cc6a3"
+    },
+    "script/narration.json": {
+      "hash": "d61dbbe6ccdbc43afdf2c128f50eb6a38d4268cac7654b6eb406a7a6650c2b43",
+      "content": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/d6/d61dbbe6ccdbc43afdf2c128f50eb6a38d4268cac7654b6eb406a7a6650c2b43"
+    },
+    "script/SCRIPT.md": {
+      "hash": "6280ffc028f1ea062215252935c1ef0f7fc3ed4f352a84dc5222efeb39edb92d",
+      "content": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/62/6280ffc028f1ea062215252935c1ef0f7fc3ed4f352a84dc5222efeb39edb92d"
     }
   },
   "revisions": {
@@ -134,12 +142,39 @@
           "after": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/a8/a84f9a1c98860c354082e5cefc14427642ecb0712de2204af3962c08db92504a"
         }
       }
+    },
+    "e6316d22-6c3f-4a4b-9c02-393050553af4": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1795138919302,
+      "endedAt": 1795138919307,
+      "files": {
+        "compositions/scene-01.html": {
+          "before": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/08/08970b8de9bd598ebc3b45c85744b24f9ba4c48fff751187acfc734f41068f45",
+          "after": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/ee/eee0d3ef59d5b73f28c8685217e2f3a77c2b5f5d99c7310d1ae84083f3840c1a"
+        },
+        "index.html": {
+          "before": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/fb/fbecf0ad818cc1eda8033cb2d4fb0b8327543c8eba13f614e65d59100eb4b883",
+          "after": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/22/221582b830fab986d42199eb9ce5cce51e3cea6fb47b61430a55666aaf67c3ce"
+        },
+        "script/narration.json": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/d6/d61dbbe6ccdbc43afdf2c128f50eb6a38d4268cac7654b6eb406a7a6650c2b43"
+        },
+        "script/SCRIPT.md": {
+          "before": null,
+          "after": "/root/.cache/hyperframes/history/c6d57bb3-1ff0-4a06-8101-0a3ed87de058/blobs/62/6280ffc028f1ea062215252935c1ef0f7fc3ed4f352a84dc5222efeb39edb92d"
+        }
+      }
     }
   },
   "checks": {
     "latest": {
-      "revision": "5f7919fc-7242-4324-89c3-4c09d20b95a8",
-      "id": "9ea90c43-e475-4aeb-89d7-1fb1bbc815d1"
+      "revision": "e6316d22-6c3f-4a4b-9c02-393050553af4",
+      "id": "69bd8baf-1b23-491c-a528-6a1c9a88a7f6"
     },
     "revisions": {
       "5f7919fc-7242-4324-89c3-4c09d20b95a8": [
@@ -175,6 +210,43 @@
           "contentHash": "de923e15c53977516aa94d77f402b409a9c0b2d61ec336a96acd2426da411e8f",
           "revision": "5f7919fc-7242-4324-89c3-4c09d20b95a8",
           "inputFingerprint": "4352e38a018657c5c9b28b4a2bbf895bc279b05771991b758ad1c367385e5f41",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "e6316d22-6c3f-4a4b-9c02-393050553af4": [
+        {
+          "id": "69bd8baf-1b23-491c-a528-6a1c9a88a7f6",
+          "scope": "project",
+          "report": "/home/user/MP4-maker/space-videos/template/.hyperframes/artifacts/checks/69bd8baf-1b23-491c-a528-6a1c9a88a7f6.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 45000,
+              "cache": true,
+              "contrast": true,
+              "craft": true,
+              "strict": false,
+              "snapshots": false,
+              "safeZones": [
+                "tiktok",
+                "reels",
+                "shorts"
+              ],
+              "browserGpuMode": "auto",
+              "includeUnmounted": false
+            }
+          },
+          "createdAt": 1795138928800,
+          "contentHash": "7cd4e89a75c80e80b816ddf29258ed34aceaf3bab52473f9d031d6da3fa21c75",
+          "revision": "e6316d22-6c3f-4a4b-9c02-393050553af4",
+          "inputFingerprint": "d22b0571d3ba7ba34d72e891d52d2eb2cab29cde7b6fccb648a982cdad995f07",
           "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }
