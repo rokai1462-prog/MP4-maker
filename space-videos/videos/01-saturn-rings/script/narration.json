@@ -1,0 +1,14 @@
+{
+  "voice_id": "SAz9YHcvj6GT2YYXdXww",
+  "model_id": "eleven_multilingual_v2",
+  "scenes": [
+    { "id": "scene-01", "text": "Saturn's rings are disappearing in two ways. One is an illusion. The other is *real.*" },
+    { "id": "scene-02", "text": "The rings stretch about 170,000 miles across, but they're only around 30 feet thick." },
+    { "id": "scene-03", "text": "So every 13 to 15 years, when Earth sees them edge-on, they almost vanish. That last happened in March 2025, and next in 2038." },
+    { "id": "scene-04", "text": "The real one: the rings are falling into Saturn. Sunlight and tiny meteorite hits give bits of ice an electric charge." },
+    { "id": "scene-05", "text": "Then Saturn's magnetic field and gravity pull them down, as *ring* *rain.*" },
+    { "id": "scene-06", "text": "NASA estimates it drains enough to fill an Olympic swimming pool every half hour." },
+    { "id": "scene-07", "text": "Add what Cassini saw falling in, and the rings may have less than *100* *million* *years* left." },
+    { "id": "scene-08", "text": "Scientists still debate how old the rings are. But they won't last *forever.*" }
+  ]
+}

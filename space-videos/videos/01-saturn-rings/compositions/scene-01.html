@@ -1,0 +1,83 @@
+<template>
+  <!--
+    SCENE 01 — THE HOOK. Frame 0 is the thumbnail: the headline and the visual are
+    already on screen at 0 s (no zoom-in here). Exits with the house cosmic zoom.
+  -->
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #s01-inner {
+      position: absolute;
+      inset: 0;
+    }
+    #s01-text {
+      top: 300px;
+    }
+    #s01-head {
+      margin-top: 22px;
+    }
+    #s01-stage {
+      position: absolute;
+      left: 140px;
+      top: 600px;
+      width: 800px;
+      height: 460px;
+    }
+    #s01-orb {
+      position: absolute;
+      left: 250px;
+      top: 90px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 34%, #fff6e0 0%, #ffd38a 26%, #ff9a52 58%, #b4421f 100%);
+      box-shadow:
+        0 0 80px 20px rgba(255, 170, 90, 0.45),
+        0 0 220px 60px rgba(255, 130, 60, 0.18);
+    }
+    #s01-orbit {
+      position: absolute;
+      inset: 0;
+      width: 800px;
+      height: 460px;
+    }
+  </style>
+  <div id="root" data-composition-id="scene-01" data-width="1080" data-height="1920">
+    <div id="s01-inner">
+      <div id="s01-text" class="sv-column">
+        <div id="s01-kicker" class="sv-kicker">Space · Ep 01</div>
+        <div id="s01-head" class="sv-headline">Your hook question goes <em>here?</em></div>
+      </div>
+      <div id="s01-stage" data-layout-ignore>
+        <div id="s01-orb"></div>
+        <svg id="s01-orbit" viewBox="0 0 800 460">
+          <ellipse cx="400" cy="230" rx="370" ry="110" fill="none" stroke="#8fb4ff" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="6 10" />
+          <circle id="s01-moon" cx="0" cy="0" r="18" fill="#8fb4ff" />
+        </svg>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const DUR = SV.sceneDuration(document.getElementById("s01-inner"), 5);
+      const tl = gsap.timeline({ paused: true });
+      // Already on screen at frame 0; small accents animate in.
+      tl.fromTo("#s01-text", { y: 0 }, { y: -12, duration: DUR, ease: "none" }, 0);
+      SV.drift(tl, "#s01-stage", DUR);
+      // Moon on its orbit: position is a pure function of time.
+      const orbit = { p: 0.1 };
+      const moon = document.getElementById("s01-moon");
+      const place = () => {
+        const a = orbit.p * Math.PI * 2;
+        moon.setAttribute("cx", (400 + Math.cos(a) * 370).toFixed(2));
+        moon.setAttribute("cy", (230 + Math.sin(a) * 110).toFixed(2));
+      };
+      tl.to(orbit, { p: 0.1 + DUR / 12, duration: DUR, ease: "none", onUpdate: place }, 0);
+      place();
+      SV.zoomOut(tl, "#s01-inner", DUR);
+      window.__timelines["scene-01"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,52 @@
+<template>
+  <!--
+    LAST SCENE — THE TAKEAWAY. Zooms in, lands the one idea in one line, holds.
+    No zoom-out (the video ends here).
+  -->
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #s03-inner {
+      position: absolute;
+      inset: 0;
+    }
+    #s03-text {
+      top: 440px;
+      text-align: center;
+    }
+    #s03-rule {
+      margin: 40px auto 0;
+      transform-origin: center center;
+    }
+    #s03-credit {
+      position: absolute;
+      left: var(--sv-side-left);
+      right: var(--sv-side-right);
+      top: 860px;
+      text-align: center;
+    }
+  </style>
+  <div id="root" data-composition-id="scene-03" data-width="1080" data-height="1920">
+    <div id="s03-inner">
+      <div id="s03-text" class="sv-column">
+        <div id="s03-kicker" class="sv-kicker">The takeaway</div>
+        <div id="s03-head" class="sv-headline" style="margin-top: 24px">The one idea, in <em>one line.</em></div>
+        <div id="s03-rule" class="sv-rule"></div>
+      </div>
+      <div id="s03-credit" class="sv-credit">Sources in the description</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const DUR = SV.sceneDuration(document.getElementById("s03-inner"), 4.5);
+      const tl = gsap.timeline({ paused: true });
+      SV.zoomIn(tl, "#s03-inner");
+      tl.fromTo("#s03-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.inOut" }, 0.9);
+      SV.rise(tl, "#s03-credit", 1.4);
+      tl.fromTo("#s03-text", { y: 0 }, { y: -14, duration: DUR, ease: "none" }, 0);
+      window.__timelines["scene-03"] = tl;
+    })();
+  </script>
+</template>
