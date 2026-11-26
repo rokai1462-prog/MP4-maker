@@ -1,51 +1,55 @@
 <template>
-  <!--
-    LAST SCENE — THE TAKEAWAY. Zooms in, lands the one idea in one line, holds.
-    No zoom-out (the video ends here).
-  -->
+  <!-- SCENE 03 — EDGE-ON. Words: 13@1.04 15@1.57 edge-on@3.57 vanish@4.86 March@7.05 2025@7.35 next@8.80 2038@9.23 -->
   <style>
-    #root {
-      position: absolute;
-      inset: 0;
-    }
-    #s03-inner {
-      position: absolute;
-      inset: 0;
-    }
-    #s03-text {
-      top: 440px;
-      text-align: center;
-    }
-    #s03-rule {
-      margin: 40px auto 0;
-      transform-origin: center center;
-    }
-    #s03-credit {
-      position: absolute;
-      left: var(--sv-side-left);
-      right: var(--sv-side-right);
-      top: 860px;
-      text-align: center;
-    }
+    #root { position: absolute; inset: 0; }
+    #s03-inner { position: absolute; inset: 0; }
+    #s03-cv { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #s03-text { top: 300px; }
+    #s03-head { margin-top: 22px; }
+    #s03-every { position: absolute; left: var(--sv-side-left); right: var(--sv-side-right); top: 600px; }
+    .s03-date { position: absolute; left: var(--sv-side-left); right: var(--sv-side-right); top: 580px; }
+    .s03-date .sv-number { font-size: 120px; margin-top: 6px; }
   </style>
   <div id="root" data-composition-id="scene-03" data-width="1080" data-height="1920">
     <div id="s03-inner">
+      <canvas id="s03-cv" width="1080" height="1920" data-layout-ignore></canvas>
       <div id="s03-text" class="sv-column">
-        <div id="s03-kicker" class="sv-kicker">The takeaway</div>
-        <div id="s03-head" class="sv-headline" style="margin-top: 24px">The one idea, in <em>one line.</em></div>
-        <div id="s03-rule" class="sv-rule"></div>
+        <div id="s03-kicker" class="sv-kicker">① The illusion</div>
+        <div id="s03-head" class="sv-headline">Edge-on, they <em>vanish</em></div>
       </div>
-      <div id="s03-credit" class="sv-credit">Sources in the description</div>
+      <div id="s03-every" class="sv-body">every <em>13–15 years</em></div>
+      <div id="s03-last" class="s03-date">
+        <div class="sv-kicker">Last edge-on</div>
+        <div class="sv-number">Mar 2025</div>
+      </div>
+      <div id="s03-next" class="s03-date">
+        <div class="sv-kicker">Next</div>
+        <div class="sv-number">2038</div>
+      </div>
     </div>
   </div>
   <script>
     (function () {
-      const DUR = SV.sceneDuration(document.getElementById("s03-inner"), 4.5);
+      const DUR = SV.sceneDuration(document.getElementById("s03-inner"), 11.0);
+      const ctx = document.getElementById("s03-cv").getContext("2d");
+      const st = { t: 0, open: 0.4 };
+      function draw() {
+        ctx.clearRect(0, 0, 1080, 1920);
+        SV.saturn.draw(ctx, { cx: 540, cy: 900, R: 150, open: st.open, tilt: -0.12, glow: 0.9 });
+      }
       const tl = gsap.timeline({ paused: true });
+      tl.to(st, { t: DUR, duration: DUR, ease: "none", onUpdate: draw }, 0); // redraw every frame
       SV.zoomIn(tl, "#s03-inner");
-      tl.fromTo("#s03-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.inOut" }, 0.9);
-      SV.rise(tl, "#s03-credit", 1.4);
-      tl.fromTo("#s03-text", { y: 0 }, { y: -14, duration: DUR, ease: "none" }, 0);
+      SV.rise(tl, "#s03-every", 1.0);
+      // The rings close to a hairline as "edge-on ... vanish" is spoken, hold, then begin to reopen.
+      tl.to(st, { open: 0.0, duration: 2.3, ease: "power2.inOut", onUpdate: draw }, 2.6);
+      tl.to(st, { open: 0.14, duration: 1.6, ease: "power2.inOut", onUpdate: draw }, 9.2);
+      tl.to("#s03-every", { opacity: 0, duration: 0.3 }, 6.6);
+      tl.fromTo("#s03-last", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 6.95);
+      tl.to("#s03-last", { opacity: 0, y: -20, duration: 0.3, ease: "power2.in" }, 8.45);
+      tl.fromTo("#s03-next", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 8.75);
+      SV.zoomOut(tl, "#s03-inner", DUR);
+      draw();
       window.__timelines["scene-03"] = tl;
     })();
   </script>

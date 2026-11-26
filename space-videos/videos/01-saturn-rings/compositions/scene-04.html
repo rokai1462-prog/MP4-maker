@@ -1,0 +1,126 @@
+<template>
+  <!-- SCENE 04 — THE REAL ONE. Words: real@0.57 falling@2.09 Saturn@2.66 Sunlight@3.64 meteorite@4.65 hits@5.16 ice@6.10 electric@6.57 charge@6.99 -->
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s04-inner { position: absolute; inset: 0; }
+    #s04-cv { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #s04-text { top: 300px; }
+    #s04-head { margin-top: 22px; }
+    #s04-sun { position: absolute; left: var(--sv-side-left); top: 600px; color: var(--sv-accent); }
+    #s04-hit { position: absolute; right: var(--sv-side-right); top: 600px; text-align: right; }
+    #s04-charge { position: absolute; left: var(--sv-side-left); right: var(--sv-side-right); top: 600px; text-align: center; color: #9fd8ff; }
+  </style>
+  <div id="root" data-composition-id="scene-04" data-width="1080" data-height="1920">
+    <div id="s04-inner">
+      <canvas id="s04-cv" width="1080" height="1920" data-layout-ignore></canvas>
+      <div id="s04-text" class="sv-column">
+        <div id="s04-kicker" class="sv-kicker">② The real one</div>
+        <div id="s04-head" class="sv-headline">The rings are <em>falling in</em></div>
+      </div>
+      <div id="s04-sun" class="sv-label">sunlight</div>
+      <div id="s04-hit" class="sv-label">micrometeorites</div>
+      <div id="s04-charge" class="sv-label">⚡ charged ice</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const DUR = SV.sceneDuration(document.getElementById("s04-inner"), 8.32);
+      const ctx = document.getElementById("s04-cv").getContext("2d");
+      const T_SUN = 3.6, T_HIT = 4.6, T_CHARGE = 6.5;
+      // Ice chunks of the ring, seen up close, drifting along their orbit.
+      const chunks = [];
+      for (let i = 0; i < 70; i++) {
+        const sides = 5 + Math.floor(SV.rnd(i + 3) * 4);
+        const pts = [];
+        for (let k = 0; k < sides; k++) pts.push(0.7 + 0.3 * SV.rnd(i * 10 + k));
+        chunks.push({ x: SV.rnd(i + 100) * 1300 - 110, y: 690 + SV.rnd(i + 200) * 360, r: 6 + Math.pow(SV.rnd(i + 300), 2.2) * 34, v: 20 + SV.rnd(i + 400) * 30, rot: SV.rnd(i + 500) * 6, spin: (SV.rnd(i + 600) - 0.5) * 0.6, pts, shade: 0.75 + 0.25 * SV.rnd(i + 700) });
+      }
+      const hits = [];
+      for (let i = 0; i < 9; i++) hits.push({ t: T_HIT + i * 0.11 + SV.rnd(i + 900) * 0.08, x: 180 + SV.rnd(i + 910) * 720, y: 740 + SV.rnd(i + 920) * 260 });
+      const st = { t: 0 };
+      function chunkPos(c, t) {
+        let x = c.x + c.v * t;
+        x = ((x + 110) % 1300) - 110;
+        return [x, c.y];
+      }
+      function draw() {
+        const t = st.t;
+        ctx.clearRect(0, 0, 1080, 1920);
+        // Sunlight: warm diagonal beams.
+        const sun = Math.min(1, Math.max(0, (t - T_SUN) / 0.6));
+        if (sun > 0) {
+          ctx.save();
+          ctx.globalAlpha = 0.22 * sun;
+          for (let b = 0; b < 4; b++) {
+            const g = ctx.createLinearGradient(0, 560, 900, 1150);
+            g.addColorStop(0, "rgba(255,210,140,0.9)");
+            g.addColorStop(1, "rgba(255,210,140,0)");
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            const o = b * 170 - 120;
+            ctx.moveTo(o, 560); ctx.lineTo(o + 90, 560); ctx.lineTo(o + 700, 1150); ctx.lineTo(o + 560, 1150);
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+        const charge = Math.min(1, Math.max(0, (t - T_CHARGE) / 0.5));
+        for (let i = 0; i < chunks.length; i++) {
+          const c = chunks[i];
+          const [x, y] = chunkPos(c, t);
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.rotate(c.rot + c.spin * t);
+          if (charge > 0) {
+            ctx.shadowColor = "rgba(120,200,255," + (0.9 * charge).toFixed(3) + ")";
+            ctx.shadowBlur = 18 * charge;
+          }
+          const l = Math.round(200 * c.shade + 40 * sun);
+          ctx.fillStyle = "rgb(" + l + "," + Math.round(l * 1.03) + "," + Math.min(255, Math.round(l * 1.12)) + ")";
+          ctx.beginPath();
+          c.pts.forEach((p, k) => {
+            const a = (k / c.pts.length) * Math.PI * 2;
+            const px = Math.cos(a) * c.r * p, py = Math.sin(a) * c.r * p;
+            k ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+          });
+          ctx.closePath();
+          ctx.fill();
+          ctx.restore();
+          // Tiny sparks on charged chunks.
+          if (charge > 0 && i % 4 === 0) {
+            const flick = 0.5 + 0.5 * Math.sin(t * 14 + i);
+            ctx.fillStyle = "rgba(170,225,255," + (charge * flick).toFixed(3) + ")";
+            ctx.beginPath();
+            ctx.arc(x + c.r * 0.9, y - c.r * 0.6, 3, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+        // Micrometeorite streaks and impact flashes.
+        for (const h of hits) {
+          const dt = t - h.t;
+          if (dt > -0.25 && dt < 0) {
+            const k = 1 + dt / 0.25;
+            const sx = h.x + 260 * (1 - k), sy = h.y - 300 * (1 - k);
+            ctx.strokeStyle = "rgba(255,255,255,0.9)";
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(sx + 50, sy - 58); ctx.stroke();
+          } else if (dt >= 0 && dt < 0.35) {
+            const k = dt / 0.35;
+            ctx.fillStyle = "rgba(255,240,210," + (1 - k).toFixed(3) + ")";
+            ctx.beginPath(); ctx.arc(h.x, h.y, 6 + 26 * k, 0, Math.PI * 2); ctx.fill();
+          }
+        }
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(st, { t: DUR, duration: DUR, ease: "none", onUpdate: draw }, 0);
+      SV.zoomIn(tl, "#s04-inner");
+      tl.fromTo("#s04-head", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 1.95);
+      SV.rise(tl, "#s04-sun", T_SUN);
+      SV.rise(tl, "#s04-hit", T_HIT);
+      tl.to(["#s04-sun", "#s04-hit"], { opacity: 0, duration: 0.3 }, T_CHARGE - 0.35);
+      SV.rise(tl, "#s04-charge", T_CHARGE);
+      SV.zoomOut(tl, "#s04-inner", DUR);
+      draw();
+      window.__timelines["scene-04"] = tl;
+    })();
+  </script>
+</template>

@@ -32,6 +32,8 @@ after the preview (step 6). Use `space-videos/template/script/SCRIPT.md` as the 
 
 - The key is a **network secret** on this cloud environment (host `api.elevenlabs.io`, header
   `xi-api-key`). Never ask for the key in chat, never accept a pasted one, and never write it to a file.
+- Run it with `NODE_USE_ENV_PROXY=1 ELEVENLABS_API_KEY=proxy-injected` in the cloud (Node's fetch
+  ignores HTTPS_PROXY otherwise; the proxy swaps in the real key).
 - `node space-videos/tools/voiceover.mjs videos/<name>` is a dry run that prints the credit cost.
   Spend credits (`--go`) only on an approved script, after telling the person the character count.
 - Edited narration only re-voices the scenes whose text changed (`script/voice-cache.json`).
@@ -47,6 +49,8 @@ after the preview (step 6). Use `space-videos/template/script/SCRIPT.md` as the 
 
 ## Environment notes
 
+- Fonts: Space Mono ships in `brand/fonts/` as "SV Space Mono" (the renderer otherwise fell back to a
+  generic mono for bold). Stick to characters the Latin subset has (no U+2011 etc.).
 - jsDelivr/unpkg are blocked by the network: get JS libraries with `npm pack <pkg>@<ver>` into
   the scratchpad and copy the file into the video's `assets/vendor/`. Never load from a CDN at render time.
 - Commit and push work to the session's branch when a step is done.

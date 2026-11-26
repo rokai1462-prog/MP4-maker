@@ -1,0 +1,70 @@
+{
+ "total": 49.916,
+ "cuts": [
+  5.411,
+  11.427,
+  21.936,
+  29.755,
+  34.413,
+  39.306,
+  44.904
+ ],
+ "scenes": [
+  {
+   "id": "scene-01",
+   "start": 0,
+   "duration": 5.661,
+   "voiceStart": 0.2,
+   "audio": 4.911
+  },
+  {
+   "id": "scene-02",
+   "start": 5.161,
+   "duration": 6.516,
+   "voiceStart": 5.511,
+   "audio": 5.616
+  },
+  {
+   "id": "scene-03",
+   "start": 11.177,
+   "duration": 11.009,
+   "voiceStart": 11.527,
+   "audio": 10.109
+  },
+  {
+   "id": "scene-04",
+   "start": 21.686,
+   "duration": 8.319,
+   "voiceStart": 22.036,
+   "audio": 7.419
+  },
+  {
+   "id": "scene-05",
+   "start": 29.505,
+   "duration": 5.158,
+   "voiceStart": 29.855,
+   "audio": 4.258
+  },
+  {
+   "id": "scene-06",
+   "start": 34.163,
+   "duration": 5.393,
+   "voiceStart": 34.513,
+   "audio": 4.493
+  },
+  {
+   "id": "scene-07",
+   "start": 39.056,
+   "duration": 6.098,
+   "voiceStart": 39.406,
+   "audio": 5.198
+  },
+  {
+   "id": "scene-08",
+   "start": 44.654,
+   "duration": 5.262,
+   "voiceStart": 45.004,
+   "audio": 4.362
+  }
+ ]
+}

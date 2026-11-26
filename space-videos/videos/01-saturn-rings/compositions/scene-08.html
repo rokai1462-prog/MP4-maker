@@ -1,0 +1,46 @@
+<template>
+  <!-- SCENE 08 — TAKEAWAY (last scene, no zoom-out). Words: debate@1.22 old@1.80 But@3.00 won't@3.33 last@3.58 forever@3.88 -->
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s08-inner { position: absolute; inset: 0; }
+    #s08-cv { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #s08-q { top: 330px; }
+    #s08-text { top: 330px; }
+    #s08-credit { position: absolute; left: var(--sv-side-left); right: var(--sv-side-right); top: 560px; }
+  </style>
+  <div id="root" data-composition-id="scene-08" data-width="1080" data-height="1920">
+    <div id="s08-inner">
+      <canvas id="s08-cv" width="1080" height="1920" data-layout-ignore></canvas>
+      <div id="s08-q" class="sv-column">
+        <div class="sv-kicker">Still debated</div>
+        <div class="sv-body" style="margin-top: 18px">Young? Or as old as <em>Saturn</em>?</div>
+      </div>
+      <div id="s08-text" class="sv-column">
+        <div class="sv-headline">They won't last <em>forever.</em></div>
+      </div>
+      <div id="s08-credit" class="sv-credit">Sources in the description</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const DUR = SV.sceneDuration(document.getElementById("s08-inner"), 5.26);
+      const ctx = document.getElementById("s08-cv").getContext("2d");
+      const st = { t: 0, ring: 1 };
+      function draw() {
+        ctx.clearRect(0, 0, 1080, 1920);
+        SV.saturn.draw(ctx, { cx: 540, cy: 860, R: 160, open: 0.38, tilt: -0.25, ringAlpha: st.ring, glow: 1 });
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(st, { t: DUR, duration: DUR, ease: "none", onUpdate: draw }, 0);
+      SV.zoomIn(tl, "#s08-inner");
+      tl.fromTo("#s08-q", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 1.1);
+      tl.to("#s08-q", { opacity: 0, y: -20, duration: 0.35, ease: "power2.in" }, 2.65);
+      tl.fromTo("#s08-text", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 3.0);
+      tl.fromTo("#s08-credit", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 3.0);
+      // The rings slowly dim: "they won't last forever".
+      tl.to(st, { ring: 0.45, duration: 2.2, ease: "power1.inOut", onUpdate: draw }, 3.0);
+      draw();
+      window.__timelines["scene-08"] = tl;
+    })();
+  </script>
+</template>

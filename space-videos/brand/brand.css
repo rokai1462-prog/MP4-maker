@@ -5,6 +5,21 @@
   Fonts: Space Mono (titles, labels) + Inter (body, captions) — both bundled with HyperFrames
   Edit this file, then run `node tools/sync-brand.mjs` to push the change into every video.
 */
+/* Space Mono ships with the project (SIL Open Font License, brand/fonts/), so renders never
+   depend on a font download. */
+@font-face {
+  font-family: "SV Space Mono";
+  src: url("fonts/space-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SV Space Mono";
+  src: url("fonts/space-mono-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
   /* Backgrounds */
   --sv-bg-0: #04050d; /* near-black */
@@ -23,7 +38,7 @@
   --sv-cool: #8fb4ff; /* soft blue: kickers, labels, orbits */
 
   /* Type */
-  --sv-font-title: "Space Mono", monospace;
+  --sv-font-title: "SV Space Mono", "Space Mono", monospace;
   --sv-font-body: "Inter", sans-serif;
 
   /* Vertical safe area shared by TikTok, Instagram Reels and YouTube Shorts (1080 x 1920).

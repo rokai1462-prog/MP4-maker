@@ -1,0 +1,84 @@
+<template>
+  <!-- SCENE 05 — RING RAIN. Words: magnetic@1.14 field@1.58 gravity@2.05 pull@2.51 down@2.89 ring@3.71 rain@3.96 -->
+  <style>
+    #root { position: absolute; inset: 0; }
+    #s05-inner { position: absolute; inset: 0; }
+    #s05-cv { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #s05-text { top: 300px; }
+    #s05-head { margin-top: 22px; font-size: 110px; }
+    #s05-mag { position: absolute; left: var(--sv-side-left); top: 1000px; color: var(--sv-cool); }
+    #s05-grav { position: absolute; right: var(--sv-side-right); top: 1000px; text-align: right; }
+  </style>
+  <div id="root" data-composition-id="scene-05" data-width="1080" data-height="1920">
+    <div id="s05-inner">
+      <canvas id="s05-cv" width="1080" height="1920" data-layout-ignore></canvas>
+      <div id="s05-text" class="sv-column">
+        <div id="s05-kicker" class="sv-kicker">② The real one</div>
+        <div id="s05-head" class="sv-headline"><em>Ring rain</em></div>
+      </div>
+      <div id="s05-mag" class="sv-label">magnetic field</div>
+      <div id="s05-grav" class="sv-label">+ gravity</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const DUR = SV.sceneDuration(document.getElementById("s05-inner"), 5.16);
+      const ctx = document.getElementById("s05-cv").getContext("2d");
+      const CX = 540, CY = 760, R = 200;
+      const T_FIELD = 1.1, T_RAIN = 2.4;
+      const Ls = [1.45, 1.75, 2.1, 2.45];
+      // A dipole field line: r = L*R*cos^2(lat). Point at fraction f from the ring plane (f=0) to the cloud tops (f=1).
+      function linePoint(L, side, hemi, f) {
+        const latMax = Math.acos(Math.sqrt(1 / L));
+        const lat = latMax * f;
+        const r = L * R * Math.cos(lat) * Math.cos(lat);
+        return [CX + side * r * Math.cos(lat), CY - hemi * r * Math.sin(lat) * 0.9];
+      }
+      const drops = [];
+      for (let i = 0; i < 46; i++) drops.push({ L: Ls[i % 4], side: SV.rnd(i + 1) < 0.5 ? -1 : 1, hemi: SV.rnd(i + 2) < 0.6 ? 1 : -1, phase: SV.rnd(i + 3), speed: 0.55 + SV.rnd(i + 4) * 0.4 });
+      const st = { t: 0 };
+      function draw() {
+        const t = st.t;
+        ctx.clearRect(0, 0, 1080, 1920);
+        SV.saturn.draw(ctx, { cx: CX, cy: CY, R: R, open: 0.08, tilt: 0, glow: 0.7 });
+        // Field lines draw on.
+        const grow = Math.min(1, Math.max(0, (t - T_FIELD) / 0.9));
+        if (grow > 0) {
+          ctx.lineWidth = 2.5;
+          ctx.strokeStyle = "rgba(143,180,255,0.6)";
+          for (const L of Ls) for (const side of [-1, 1]) for (const hemi of [1, -1]) {
+            ctx.beginPath();
+            for (let k = 0; k <= 40; k++) {
+              const [x, y] = linePoint(L, side, hemi, (k / 40) * grow);
+              k ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+            }
+            ctx.stroke();
+          }
+        }
+        // Charged ice slides down the field lines into the clouds.
+        const rain = Math.min(1, Math.max(0, (t - T_RAIN) / 0.4));
+        if (rain > 0) {
+          for (const d of drops) {
+            const f = ((t - T_RAIN) * d.speed + d.phase) % 1;
+            const [x, y] = linePoint(d.L, d.side, d.hemi, f);
+            const a = rain * Math.min(1, (1 - f) * 6) * Math.min(1, f * 8 + 0.2);
+            ctx.fillStyle = "rgba(190,230,255," + a.toFixed(3) + ")";
+            ctx.shadowColor = "rgba(120,200,255,0.9)";
+            ctx.shadowBlur = 10;
+            ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI * 2); ctx.fill();
+            ctx.shadowBlur = 0;
+          }
+        }
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(st, { t: DUR, duration: DUR, ease: "none", onUpdate: draw }, 0);
+      SV.zoomIn(tl, "#s05-inner");
+      SV.rise(tl, "#s05-mag", T_FIELD);
+      SV.rise(tl, "#s05-grav", 2.0);
+      tl.fromTo("#s05-head", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, transformOrigin: "left center", duration: 0.5, ease: "back.out(1.8)" }, 3.6);
+      SV.zoomOut(tl, "#s05-inner", DUR);
+      draw();
+      window.__timelines["scene-05"] = tl;
+    })();
+  </script>
+</template>

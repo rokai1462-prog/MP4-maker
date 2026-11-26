@@ -11,7 +11,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const base = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const files = ["brand.css", "motion.js"];
+const files = ["brand.css", "motion.js", "planets.js"];
 const targets = [path.join(base, "template")];
 const vids = path.join(base, "videos");
 for (const d of fs.readdirSync(vids)) {
@@ -21,5 +21,6 @@ for (const d of fs.readdirSync(vids)) {
 for (const t of targets) {
   fs.mkdirSync(path.join(t, "assets", "brand"), { recursive: true });
   for (const f of files) fs.copyFileSync(path.join(base, "brand", f), path.join(t, "assets", "brand", f));
+  fs.cpSync(path.join(base, "brand", "fonts"), path.join(t, "assets", "brand", "fonts"), { recursive: true });
   console.log("updated", path.relative(base, t));
 }
